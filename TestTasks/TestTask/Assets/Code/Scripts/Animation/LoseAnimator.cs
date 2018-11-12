@@ -13,20 +13,23 @@ namespace MyGame.GameProcess.Animation
 		[SerializeField] private float AnimTime = 0.5f;
 		[SerializeField] private float LoseCylinderFinalColorR = 1f;
 
+		private CylinderController _loseCylinderStored;
+
 		public void StartAnimateLose(CylinderController cylinderLostGame)
 		{
-			SetCylinderMaterial(cylinderLostGame);
-			StartCoroutine(AnimateLoseCoroutine(cylinderLostGame));
+			_loseCylinderStored = cylinderLostGame;
+			SetCylinderMaterial();
+			StartCoroutine(AnimateLoseCoroutine());
 		}
 
-		private void SetCylinderMaterial(CylinderController cylinderLostGame)
+		private void SetCylinderMaterial()
 		{
-			cylinderLostGame.MeshRenderer.material = CylinderRecolorableMaterial;
+			_loseCylinderStored.MeshRenderer.material = CylinderRecolorableMaterial;
 		}
 
-		private IEnumerator AnimateLoseCoroutine(CylinderController cylinderLostGame)
+		private IEnumerator AnimateLoseCoroutine()
 		{
-			MeshRenderer renderer = cylinderLostGame.MeshRenderer;
+			MeshRenderer renderer = _loseCylinderStored.MeshRenderer;
 
 			for (int i = 0; i < IterationsNumber; i++) 
 			{
@@ -39,13 +42,31 @@ namespace MyGame.GameProcess.Animation
 				yield return new WaitForSeconds(AnimTime / IterationsNumber);
 			}
 
-			FireOnAnimationCompleteEvent(cylinderLostGame);
+			FireOnAnimationCompleteEvent();
 		}
 
-		private void FireOnAnimationCompleteEvent(CylinderController cylinderLostGame)
+		private void FireOnAnimationCompleteEvent()
 		{
 			if (OnAnimationComplete != null)
-				OnAnimationComplete(cylinderLostGame);
+				OnAnimationComplete(_loseCylinderStored);
+		}
+
+		public void ClearAnimation()
+		{
+			RestoreLoseCylinderColor();
+			RestoreState();
+		}
+
+		private void RestoreLoseCylinderColor()
+		{
+			MeshRenderer renderer = _loseCylinderStored.MeshRenderer;
+			Color defColor = Color.white;
+			renderer.material.color = defColor;
+		}
+
+		private void RestoreState()
+		{
+			_loseCylinderStored = null;
 		}
 
 		public event Action<CylinderController> OnAnimationComplete;

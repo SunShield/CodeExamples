@@ -113,6 +113,22 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &18537858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1615802288840866, guid: 2714e24a4f24df54393708ebd97d75f6,
+    type: 2}
+  m_PrefabInternal: {fileID: 434256579}
+--- !u!114 &18537859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 18537858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfde07cf7d37064993c7bd81928233f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &175218139
 Prefab:
   m_ObjectHideFlags: 0
@@ -166,7 +182,7 @@ Prefab:
         type: 2}
       propertyPath: DefaultCylinder
       value: 
-      objectReference: {fileID: 727273167}
+      objectReference: {fileID: 18537859}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0140c57f9907ed44db3d2f55876686a2, type: 2}
   m_IsPrefabAsset: 0
@@ -277,15 +293,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114610059540021130, guid: 2714e24a4f24df54393708ebd97d75f6, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 2714e24a4f24df54393708ebd97d75f6, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &727273167 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114610059540021130, guid: 2714e24a4f24df54393708ebd97d75f6,
-    type: 2}
-  m_PrefabInternal: {fileID: 434256579}
-  m_Script: {fileID: 11500000, guid: 7bd140103448d9e4bba96e6529169050, type: 3}
 --- !u!1001 &1000708545
 Prefab:
   m_ObjectHideFlags: 0

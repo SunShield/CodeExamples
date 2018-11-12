@@ -149,7 +149,16 @@ namespace MyGame
 
 		public void RestartGame()
 		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			RestoreState();
+			TowerController.Destroy();
+			CameraPositionController.ResetPosition();
+			LoseAnimator.ClearAnimation();
+		}
+
+		private void RestoreState()
+		{
+			_actionsEnabled = true;
+			IsGameLost = false;
 		}
 	}
 }

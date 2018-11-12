@@ -6,12 +6,13 @@ public class CameraPositionController : MonoBehaviour
 	private Transform _camTran;
 
 	private float _cylinderYStepIncrement;
-	private float _defaultY;
+	private Vector3 _defaultPos;
+	private float DefaultY {  get { return _defaultPos.y; } }
 
 	public void Init()
 	{
 		_camTran = Camera.transform;
-		_defaultY = Camera.transform.position.y;
+		_defaultPos = Camera.transform.position;
 	}
 
 	public void SetSettings(float cylinderYStepIncrement)
@@ -21,7 +22,7 @@ public class CameraPositionController : MonoBehaviour
 
 	public void SetCameraPosition(int step)
 	{
-		float newY = _defaultY + step * _cylinderYStepIncrement;
+		float newY = DefaultY + step * _cylinderYStepIncrement;
 		Vector3 camPos = _camTran.position;
 		Vector3 newPos = new Vector3(camPos.x, newY, camPos.z);
 		_camTran.position = newPos;
@@ -33,5 +34,10 @@ public class CameraPositionController : MonoBehaviour
 		Vector3 camPos = _camTran.position;
 		Vector3 newPos = camPos - _camTran.forward * (5f + steps / 9f);
 		_camTran.position = newPos;
+	}
+
+	public void ResetPosition()
+	{
+		_camTran.position = _defaultPos;
 	}
 }

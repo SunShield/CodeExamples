@@ -10,6 +10,8 @@ namespace MyGame.Cylinder
 
 	public class CylinderController : MonoBehaviour
 	{
+		private readonly Vector3 DefaultScale = new Vector3(0.1f, 0.25f, 0.1f);
+
 		private ObjectPool _nativePool;
 
 		public Transform Tran { get; private set; }
@@ -44,7 +46,19 @@ namespace MyGame.Cylinder
 
 		public void Destroy()
 		{
+			RestoreState();
 			_nativePool.ReturnToPool(this.gameObject);
+		}
+
+		public void RestoreState()
+		{
+			Vector3 defaultScale = GetDefaultScale();
+			Tran.localScale = defaultScale;
+		}
+
+		protected virtual Vector3 GetDefaultScale()
+		{
+			return DefaultScale;
 		}
 	}
 }
